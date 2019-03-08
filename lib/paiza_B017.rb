@@ -10,6 +10,7 @@ class Paiza_B017
       words.each_with_index do |w, i|
         t = 0
         words.each do |w2|
+        #   wはつねに4になるためにこれではうまくいきません
           t += 1 if w == w2 || w == '*' || w2 == '*'
         end
         answer[i] = t
