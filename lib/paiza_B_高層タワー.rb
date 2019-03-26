@@ -1,30 +1,36 @@
-class Paiza_B017
+class High_rise_tower
 
-    # def initialize
-      
-    # end
-
-    def hand_service(card:)
-      words = card.split('')
-      answer = [0, 0, 0, 0]
-      words.each_with_index do |w, i|
-        t = 0
-        words.each do |w2|
-        #   wはつねに4になるためにこれではうまくいきません
-          t += 1 if w == w2 || w == '*' || w2 == '*'
-        end
-        answer[i] = t
-      end
-      if answer.count(2) == 4
-        'TwoPair'
-      elsif answer.count(2) == 2
-        'OnePair'
-      elsif answer.count(3) == 3
-        'ThreeCard'
-      elsif answer.count(4) == 4
-        'FourCard'
-      else
-        'NoPair'
-      end
+    def initialize
+      @new_word = ''
     end
+
+    def combine(word:)
+      word.split('/').each do |w|
+        w.to_s
+        if @new_word == ''
+          @new_word = w
+        else
+          num = w.length
+          cut_word = w
+          while num >= 1
+            break if @new_word.index(cut_word, -num) != nil
+            num -= 1
+            cut_word = cut_word.chop
+          end
+          if cut_word != ''
+            int = cut_word.length
+            if int == 1
+              w.slice!(0)
+              @new_word += w
+            else
+              w.slice!(0..int -1)
+              @new_word += w
+            end
+          else
+              @new_word += w
+          end
+        end
+    end
+    @new_word
+  end
 end

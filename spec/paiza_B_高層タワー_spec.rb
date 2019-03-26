@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-RSpec.describe Paiza_B017 do
+RSpec.describe High_rise_tower do
   it '手役の強さ' do
-    result = Paiza_B017.new.hand_service(card: 'poh/p/oh')
+    result = High_rise_tower.new.combine(word: 'poh/p/oh')
     expect(result).to eq 'pohpoh'
   end
 
   it '手役の強さ' do
-    result = Paiza_B017.new.hand_service(card: 'paiza/apple/letter')
+    result = High_rise_tower.new.combine(word: 'paiza/apple/letter')
     expect(result).to eq 'paizappletter'
   end
 end
